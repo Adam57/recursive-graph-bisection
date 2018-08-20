@@ -8,7 +8,6 @@ using namespace std;
 
 int compressionVbytes(std::vector<int>& input, std::vector<unsigned char>& compressedList);
 int decompressionVbytes(char* input, int* output, int size);
-int decompressionVbytes_new(char* input, int* output, int size);
 
 class lexInfoR{
 public:

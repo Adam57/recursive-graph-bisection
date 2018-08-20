@@ -429,31 +429,3 @@ int compressionVbytes(std::vector<int>& input, std::vector<unsigned char>& compr
    return compressedSize;
 }
 
-int decompressionVbytes_new(char* input, int* output, int size){
-    char* curr_byte = input;
-    unsigned n;
-    for (int i = 0; i < size; ++i) {
-      char b = *curr_byte;
-      n = b & 0x7F;
-//        cout<<"The first byte: "<<n<<endl;
-//        print_binary(n);
-//        cout<<endl;
-
-      while((b & 0x80) !=0){
-        n = n << 7;
-        ++curr_byte;
-          b = *curr_byte;
-          n |= (b & 0x7F);
-//          cout<<"The following byte: "<<n<<endl;
-//          print_binary(n);
-//          cout<<endl;
-      }
-      ++curr_byte;
-      output[i] = n;
-    }
-
-   int num_bytes_consumed = (curr_byte - input);
-  // delete[] curr_byte;
-   return (num_bytes_consumed >> 2) + ((num_bytes_consumed & 3) != 0 ? 1 : 0);
-}
-
